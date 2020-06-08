@@ -8,7 +8,7 @@ def create_app(environment='development', test_config=None):
     app.config.from_object(configs[environment])
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=''
+        DATABASE=os.path.join(app.instance_path, 'vonage.sqlite')
     )
 
     if test_config is None:
