@@ -1,2 +1,5 @@
 .idea
 venv
+__pycache__/
+tests/__pycache__/
+vonage/__pycache__/
