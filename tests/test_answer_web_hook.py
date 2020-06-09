@@ -1,12 +1,12 @@
 import unittest
 import json
-from run import app
+from wsgi import create_app
 
 
 class TestAnswerWebHook(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.app = app
+        cls.app = create_app(environment="testing")
 
     def setUp(self):
         with self.app.app_context():
@@ -21,14 +21,6 @@ class TestAnswerWebHook(unittest.TestCase):
                 "provider": ""
             }
 
-            self.eventData = {
-                "provider": ""
-            }
-
-            self.eventFailData = {
-                "provider": ""
-            }
-
     def test_successful_answer_web_hook(self):
         """ test that the answer hook returns a successful response """
         response = self.app.post('/', data=json.dumps(self.answerData), content_type='application/json')
@@ -38,3 +30,7 @@ class TestAnswerWebHook(unittest.TestCase):
         """ test that the answer web hook returns a failed response """
         response = self.app.post('/', data=json.dumps(self.failAnswerData), content_type="application/json")
         self.assertEqual(response.status_code, 400)
+
+
+if __name__ == '__main__':
+    unittest.main()
