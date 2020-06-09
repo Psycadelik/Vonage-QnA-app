@@ -3,3 +3,4 @@ venv
 __pycache__/
 tests/__pycache__/
 vonage/__pycache__/
+.*pyc
