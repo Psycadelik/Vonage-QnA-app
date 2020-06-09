@@ -1,12 +1,12 @@
 import unittest
 import json
-from run import app
+from wsgi import create_app
 
 
 class TestEventWebHook(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.app = app
+        cls.app = create_app(environment="testing")
 
     def setUp(self):
         with self.app.app_context():
@@ -30,3 +30,7 @@ class TestEventWebHook(unittest.TestCase):
         """ test that the event web hook returns a failed response """
         response = self.app.post('/', data=json.dumps(self.eventFailData), content_type="application/json")
         self.assertEqual(response.status_code, 400)
+
+
+if __name__ == '__main__':
+    unittest.main()
