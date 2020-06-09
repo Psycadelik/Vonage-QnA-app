@@ -22,3 +22,7 @@ def create_app(environment='development', test_config=None):
         pass
 
     # TODO: add endpoints
+
+    from . import db
+    db.init_app(app)
+    return app
