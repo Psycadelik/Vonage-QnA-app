@@ -21,7 +21,17 @@ def create_app(environment='development', test_config=None):
     except OSError:
         pass
 
-    # TODO: add endpoints
+    @app.route("/inbound/", methods=['POST'])
+    def inbound_sms():
+        pass
+
+    @app.route("/status/", methods=['POST'])
+    def status_url():
+        pass
+
+    @app.route("/event/", methods=['GET'])
+    def event_url():
+        pass
 
     from . import db
     db.init_app(app)
