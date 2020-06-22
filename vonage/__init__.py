@@ -21,7 +21,13 @@ def create_app(environment='development', test_config=None):
     except OSError:
         pass
 
+    @app.route("/", methods=['GET'])
+    def landing_url():
+        res = "welcome to the Vonage QnA landing page"
+        return res
+
     """ this url defines the behaviour when a new call is taking place """
+
     @app.route("/inbound/", methods=['POST'])
     def inbound_sms():
         pass
