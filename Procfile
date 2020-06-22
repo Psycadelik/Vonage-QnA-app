@@ -1,1 +1,1 @@
-web: gunicorn QnA:wsgi --log-file
+web: gunicorn QnA:wsgi
