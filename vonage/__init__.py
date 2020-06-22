@@ -47,7 +47,12 @@ def create_app(environment='development', test_config=None):
 
     @app.route("/update/", methods=['POST'])
     def update_url():
-        pass
+        trigger = request.get_json().get('message')
+        if trigger == 'play':
+            res = jsonify("Welcome to Vonage QnA")
+            return res
+        else:
+            return jsonify("Failed. Please start with sending play.")
 
     from . import db
     db.init_app(app)
