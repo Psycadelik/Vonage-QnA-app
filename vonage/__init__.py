@@ -21,6 +21,13 @@ def create_app(environment='development', test_config=None):
     except OSError:
         pass
 
+    @app.route("/", methods=['GET'])
+    def landing_url():
+        res = "welcome to the Vonage QnA landing page"
+        return res
+
+    """ this url defines the behaviour when a new call is taking place """
+
     @app.route("/inbound/", methods=['POST'])
     def inbound_sms():
         pass
@@ -29,8 +36,17 @@ def create_app(environment='development', test_config=None):
     def status_url():
         pass
 
+    """ This url receives RTC events dispatched by the conversation API """
+
     @app.route("/event/", methods=['GET'])
     def event_url():
+        pass
+
+    """ This url receives a message using the vonage 2-way sms API and processes it with a reply """
+    """ This is where the game logic should reside """
+
+    @app.route("/update/", methods=['POST'])
+    def update_url():
         pass
 
     from . import db
