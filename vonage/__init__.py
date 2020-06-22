@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, jsonify
 from vonage.config import configs
+from vonage.nexmo import nexmo_sms
 
 
 def create_app(environment='development', test_config=None):
@@ -42,14 +43,41 @@ def create_app(environment='development', test_config=None):
     def event_url():
         pass
 
+    """ The notify URL is the entry point to the QnA game. Users opt in by choosing either 1(geographical questions),
+    2(Historical questions),3a(Music), 3b (Games), 3c (Movies)  or 4 (Exit)"""
+
+    @app.route("/notify/", methods=['POST'])
+    def notify_url():
+        number = request.get_json().get('number')
+        notification = "Welcome to the Vonage QnA quiz app. Opt in by replying with either: 1 (Geographical Quiz)," \
+                       "2 (History quiz), 3a (Music quiz), 3b (Gaming quiz), 3c (Movies quiz) " \
+                       "or 4 to Exit"
+
+        return nexmo_sms(notification, number)
+
     """ This url receives a message using the vonage 2-way sms API and processes it with a reply """
     """ This is where the game logic should reside """
 
     @app.route("/update/", methods=['POST'])
     def update_url():
         trigger = request.get_json().get('message')
-        if trigger == 'play':
-            res = jsonify("Welcome to Vonage QnA")
+        if trigger == '1':
+            res = jsonify("Welcome to the Geography quiz")
+            return res
+        elif trigger == '2':
+            res = jsonify("Welcome to the History quiz")
+            return res
+        elif trigger == '3a':
+            res = jsonify("Welcome to the Music quiz")
+            return res
+        elif trigger == '3b':
+            res = jsonify("Welcome to the Gaming quiz")
+            return res
+        elif trigger == '3c':
+            res = jsonify("Welcome to the Movies Quiz")
+            return res
+        elif trigger == '4':
+            res = jsonify("Thank you for trying us out. Try again some time")
             return res
         else:
             return jsonify("Failed. Please start with sending play.")
