@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from vonage.config import configs
 from vonage.nexmo import nexmo_sms
+from quiz.geography_quiz import geography_quiz, history_quiz, music_quiz, gaming_quiz, movies_quiz
 
 
 def create_app(environment='development', test_config=None):
@@ -62,20 +63,20 @@ def create_app(environment='development', test_config=None):
     def update_url():
         trigger = request.get_json().get('message')
         if trigger == '1':
-            res = jsonify("Welcome to the Geography quiz")
-            return res
+            geography_quiz(trigger)
+
         elif trigger == '2':
-            res = jsonify("Welcome to the History quiz")
-            return res
+            history_quiz(trigger)
+
         elif trigger == '3a':
-            res = jsonify("Welcome to the Music quiz")
-            return res
+            music_quiz(trigger)
+
         elif trigger == '3b':
-            res = jsonify("Welcome to the Gaming quiz")
-            return res
+            gaming_quiz(trigger)
+
         elif trigger == '3c':
-            res = jsonify("Welcome to the Movies Quiz")
-            return res
+            movies_quiz(trigger)
+
         elif trigger == '4':
             res = jsonify("Thank you for trying us out. Try again some time")
             return res
