@@ -5,3 +5,5 @@ tests/__pycache__/
 vonage/__pycache__/
 .*pyc
 nexmo.txt
+vonage.sqlite3
+db
