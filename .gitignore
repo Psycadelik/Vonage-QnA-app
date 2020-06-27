@@ -7,3 +7,4 @@ vonage/__pycache__/
 nexmo.txt
 vonage.sqlite3
 db
+dialogflow/google.txt
