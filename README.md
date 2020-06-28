@@ -79,3 +79,7 @@ e.g:
 - dialogflow takes over from here
  
  #How it works, bash:
+- entry point takes an argument of txt file
+```
+./entry-point.sh vonage/phone_numbers.txt
+``` 
