@@ -11,7 +11,7 @@ def nexmo_sms(sms, recipient):
 
     responseData = client.send_message(
         {
-            "from": "Vonage",
+            "from": "Quizzie",
             "to": recipient,
             "text": sms,
         }
