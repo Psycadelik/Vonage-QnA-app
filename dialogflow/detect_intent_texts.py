@@ -28,6 +28,8 @@ Examples:
 import argparse
 import uuid
 
+from scripts.two_way_sms_scripts.send_sms import send_sms
+
 
 # [START dialogflow_detect_intent_text]
 def detect_intent_texts(project_id, session_id, texts, language_code):
@@ -49,13 +51,19 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         response = session_client.detect_intent(
             session=session, query_input=query_input)
 
-        print('=' * 20)
-        print('Query text: {}'.format(response.query_result.query_text))
-        print('Detected intent: {} (confidence: {})\n'.format(
-            response.query_result.intent.display_name,
-            response.query_result.intent_detection_confidence))
-        print('Fulfillment text: {}\n'.format(
-            response.query_result.fulfillment_text))
+        number = ""
+
+        return send_sms(response.query_result.fulfillment_text, number)
+
+        # print('=' * 20)
+        # print('Query text: {}'.format(response.query_result.query_text))
+        # print('Detected intent: {} (confidence: {})\n'.format(
+        #     response.query_result.intent.display_name,
+        #     response.query_result.intent_detection_confidence))
+        # print('Fulfillment text: {}\n'.format(
+        #     response.query_result.fulfillment_text))
+
+
 # [END dialogflow_detect_intent_text]
 
 
@@ -70,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '--session-id',
         help='Identifier of the DetectIntent session. '
-        'Defaults to a random UUID.',
+             'Defaults to a random UUID.',
         default=str(uuid.uuid4()))
     parser.add_argument(
         '--language-code',
