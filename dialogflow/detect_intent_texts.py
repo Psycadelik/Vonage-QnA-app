@@ -28,8 +28,6 @@ Examples:
 import argparse
 import uuid
 
-from scripts.two_way_sms_scripts.send_sms import send_sms
-
 
 # [START dialogflow_detect_intent_text]
 def detect_intent_texts(project_id, session_id, texts, language_code):
@@ -51,9 +49,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         response = session_client.detect_intent(
             session=session, query_input=query_input)
 
-        number = ""
-
-        return send_sms(response.query_result.fulfillment_text, number)
+        return response.query_result.fulfillment_text
 
         # print('=' * 20)
         # print('Query text: {}'.format(response.query_result.query_text))
