@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from vonage.config import configs
 from vonage.nexmo import nexmo_sms
 from dialogflow.detect_intent_texts import detect_intent_texts
+from two_way_sms_api.send_sms import send_sms
 
 
 def create_app(environment='development', test_config=None):
@@ -65,7 +66,11 @@ def create_app(environment='development', test_config=None):
         session_id = os.getenv("SESSION_ID")
         language_code = os.getenv("LANG_CODE")
 
-        return detect_intent_texts(project_id, session_id, trigger, language_code)
+        response = detect_intent_texts(project_id, session_id, trigger, language_code)
+        number = open("phone_numbers.txt", 'r')
+        phone = number.readlines()[0]
+
+        return send_sms(response, phone)
 
     from . import db
     db.init_app(app)
