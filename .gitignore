@@ -5,3 +5,11 @@ tests/__pycache__/
 vonage/__pycache__/
 .*pyc
 nexmo.txt
+vonage.sqlite3
+db
+dialogflow/google.txt
+bash_scripts/vonage.txt
+scripts/js_scripts/vonage_sdk_node/node_modules
+scripts/conversation_scripts/js_scripts/vonage_sdk_node/.env
+scripts/conversation_scripts/js_scripts/vonage_sdk_node/node_modules
+.env
