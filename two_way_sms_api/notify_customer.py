@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 import argparse
+import sys
+
+sys.path.append('../')
 from vonage.nexmo import nexmo_sms
 
 
@@ -19,4 +22,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    notify_customer(args.number)
+    notify_customer(args.phone_number)
