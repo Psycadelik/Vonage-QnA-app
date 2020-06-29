@@ -13,3 +13,4 @@ scripts/js_scripts/vonage_sdk_node/node_modules
 scripts/conversation_scripts/js_scripts/vonage_sdk_node/.env
 scripts/conversation_scripts/js_scripts/vonage_sdk_node/node_modules
 .env
+python3
