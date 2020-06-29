@@ -79,7 +79,7 @@ The project structure looks like this:
     
   That's it :-)
  
- ##How it works(web):
+## How it works(web):
  - the `/webhooks/notify` url expects a number in the post request payload
 ```
 e.g:
@@ -95,7 +95,7 @@ e.g:
 
 - dialogflow takes over from here
  
- #How it works, bash:
+ ## How it works, bash:
 - entry point takes an argument of txt file
 ```
 ./entry-point.sh vonage/phone_numbers.txt
