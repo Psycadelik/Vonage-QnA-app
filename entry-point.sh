@@ -6,7 +6,7 @@ filename=$1
 #read the contents of phone_numbers.txt
 while read -r line;do
   name="$line"
-  echo "Name read from file - $name"
+  echo "PhoneNumber read from file - $name"
 done < "$filename"
 
 # direct this script to initiate by notifying the customer to begin the quiz
