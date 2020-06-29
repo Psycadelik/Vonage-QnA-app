@@ -1,36 +1,53 @@
 # Vonage-QnA-app
 The project structure looks like this:
 ```
-├── dialogflow
-│   ├── detect_intent_texts.py
+.
+├── conversationapi
+│   ├── bash_scripts
+│   │   └── create_conversation.sh
+│   ├── js_scripts
+│   │   └── vonage_sdk_node
+│   │       ├── create_conversation.js
+│   │       ├── package.json
+│   │       ├── package-lock.json
+│   │       └── README.md
+│   ├── python_scripts
+│   │   └── create_conversation.py
+│   ├── README.md
+│   └── vonage.txt
+├── dialogflowapi
 │   ├── google.txt
+│   ├── __init__.py
+│   ├── intent_texts.py
 │   ├── README.md
 │   └── test_credentials.py
+├── entry-point.sh
+├── instance
+├── nexmo.txt
 ├── Procfile
 ├── README.md
 ├── requirements.txt
 ├── runtime.txt
-├── scripts
-│   ├── 2way_sms_scripts
-│   └── conversation_scripts
-│       ├── bash_scripts
-│       │   └── create_conversation.sh
-│       ├── js_scripts
-│       │   └── vonage_sdk_node
-│       │    ├── create_conversation.js
-│       │    ├── package.json
-│       │    ├── package-lock.json
-│       │    └── README.md
-│       ├── python_scripts
-│          ├── create_conversation.py
-│       ├── README.md
-│       └── vonage.txt
-│
+├── settings.py
+├── tests
+│   ├── __init__.py
+│   ├── test_answer_web_hook.py
+│   ├── test_create_users.py
+│   ├── test_event_web_hook.py
+│   ├── test_jwt_token_generation.py
+│   ├── test_notify_web_hook.py
+│   └── test_update_web_hook.py
+├── two_way_sms_api
+│   ├── __init__.py
+│   ├── notify_customer.py
+│   └── send_sms.py
 ├── vonage
 │   ├── config.py
+│   ├── db.py
 │   ├── __init__.py
 │   ├── models.py
 │   ├── nexmo.py
+│   ├── phone_numbers.txt
 └── wsgi.py
 ```
 
