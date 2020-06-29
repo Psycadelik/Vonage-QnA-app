@@ -9,7 +9,7 @@ while read -r line;do
   echo "PhoneNumber read from file - $name"
 done < "$filename"
 
-# direct this script to initiate by notifying the customer to begin the quiz
+# direct bash to the root folder
 cd ~/personal/QnA/two_way_sms_api/ || exit
 
 chmod +x notify_customer.py
