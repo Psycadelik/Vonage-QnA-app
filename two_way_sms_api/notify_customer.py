@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import argparse
 from vonage.nexmo import nexmo_sms
 
