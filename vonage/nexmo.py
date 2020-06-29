@@ -1,5 +1,6 @@
 import nexmo
 import os
+import argparse
 from flask import jsonify
 
 
@@ -21,3 +22,19 @@ def nexmo_sms(sms, recipient):
         return jsonify("Message sent successfully.")
     else:
         return jsonify(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument(
+        '--sms',
+        required=True)
+    parser.add_argument(
+        '--recipient',
+        required=True
+    )
+
+    args = parser.parse_args()
+    nexmo_sms(args.sms, args.recipient)
