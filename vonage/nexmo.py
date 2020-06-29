@@ -21,4 +21,3 @@ def nexmo_sms(sms, recipient):
         return json.dumps("Message sent successfully.")
     else:
         return json.dumps(f"Message failed with error: {response_data['messages'][0]['error-text']}")
-
