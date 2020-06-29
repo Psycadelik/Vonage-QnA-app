@@ -27,6 +27,9 @@ Examples:
 
 import argparse
 import uuid
+# import sys
+#
+# sys.path.append('../')
 
 
 # [START dialogflow_detect_intent_text]

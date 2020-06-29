@@ -1,8 +1,11 @@
 import os
+import sys
+
+
 from flask import Flask, request, jsonify
 from vonage.config import configs
 from vonage.nexmo import nexmo_sms
-from dialogflow.detect_intent_texts import detect_intent_texts
+from dialogflowapi.intent_texts import detect_intent_texts
 from two_way_sms_api.send_sms import send_sms
 
 
