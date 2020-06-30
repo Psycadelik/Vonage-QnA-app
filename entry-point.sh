@@ -15,6 +15,6 @@ cd ~/personal/QnA/two_way_sms_api/ || exit
 chmod +x notify_customer.py
 
 #run the python script to send the initial message to the customer
-python3 notify_customer.py --phone_number number || exit 1
+./notify_customer.py --phone_number "$number" || exit 1
 
 cd ~/ || exit
