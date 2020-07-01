@@ -13,6 +13,7 @@ The project structure looks like this:
 │   │       └── README.md
 │   ├── python_scripts
 │   │   └── create_conversation.py
+│   ├── conversation-rolldown.sh
 │   ├── README.md
 │   └── vonage.txt
 ├── dialogflowapi
@@ -22,6 +23,7 @@ The project structure looks like this:
 │   ├── README.md
 │   └── test_credentials.py
 ├── entry-point.sh
+├── .env
 ├── instance
 ├── nexmo.txt
 ├── Procfile
@@ -29,14 +31,6 @@ The project structure looks like this:
 ├── requirements.txt
 ├── runtime.txt
 ├── settings.py
-├── tests
-│   ├── __init__.py
-│   ├── test_answer_web_hook.py
-│   ├── test_create_users.py
-│   ├── test_event_web_hook.py
-│   ├── test_jwt_token_generation.py
-│   ├── test_notify_web_hook.py
-│   └── test_update_web_hook.py
 ├── two_way_sms_api
 │   ├── __init__.py
 │   ├── notify_customer.py
@@ -52,23 +46,13 @@ The project structure looks like this:
 ```
 
 ### what are we trying to do?
-  - Create a conversation :
-    - open your terminal
-    - type: `JWT=your-jwt-token`
-    - type: `CONV_NAME=your-conversation-name`
-    - type: `CONV_DISPLAY_NAME=your-conversation-display-name`
-    
-   background actions:
-    - chmod +x create_conversation.sh
-   
-   Run on your terminal: `./create_conversation.sh`
- 
   -  Integrate to the Vonage 2-way SMS API:
      - configure a virtual nexmo number
      - create a basic web app
      - send an sms notification
      - process the reply sms
   
+  Integrate to DialogFlow
   - The game logic
     - A user has to be under either Geographical, Historical or Entertainment chatroom
     - A user starts the game by texting play
