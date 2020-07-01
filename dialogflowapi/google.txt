@@ -1,5 +1,0 @@
-PROJECT_ID = vonage-quizzie
-SERVICE_ACCOUNT = dialogflow-hfvdpp@vonage-quizzie.iam.gserviceaccount.com
-
-export GOOGLE_APPLICATION_CREDENTIALS=~/Downloads/updated-vonage-quizzie.json
-python detect_intent_texts.py --project-id vonage-quizzie --session-id 12345678 "hi"
