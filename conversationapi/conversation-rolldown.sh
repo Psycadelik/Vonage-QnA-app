@@ -12,7 +12,7 @@ nexmo setup "$api_key" "$api_secret" || exit 1
 #the above command writes your credentials to /home/<user>/.nexmorc
 
 #navigate to the directory that contains the private key
-cd ~/nexmo-vonage-resources/ || exit 1
+cd ~/<your-app-directory>/ || exit 1
 
 #set up your app
 nexmo app:setup  "$app_id" ./private.key
@@ -24,7 +24,7 @@ nexmo user:create name="example-user"
 token=$(nexmo jwt:generate ./private.key sub=example-user exp=$(($(date +%s)+86400)) acl='{"paths":{"/*/users/**":{},"/*/conversations/**":{},"/*/sessions/**":{},"/*/devices/**":{},"/*/image/**":{},"/*/media/**":{},"/*/applications/**":{},"/*/push/**":{},"/*/knocking/**":{}}}' application_id="$app_id")
 
 #navigate to create_conversation script
-cd ~/personal/QnA/conversationapi/python_scripts/ || exit 1
+cd ~/<your-app-directory>/conversationapi/python_scripts/ || exit 1
 
 #make the script executable
 chmod +x create_conversation.py
