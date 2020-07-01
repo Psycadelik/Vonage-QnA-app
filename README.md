@@ -1,4 +1,5 @@
 # Vonage-QnA-app
+
 The project structure looks like this:
 ```
 .
@@ -44,6 +45,40 @@ The project structure looks like this:
 │   ├── phone_numbers.txt
 └── wsgi.py
 ```
+## setup instructions:
+- clone the repository to your local folder:
+```
+git clone git@github.com:Psycadelik/Vonage-QnA-app.git QnA
+```
+- edit this file and add a valid phonenumber
+```
+nano QnA/vonage/phone_numbers.txt
+```
+- rent a valid number from vonage and edit the file:
+```
+- nano vonage/nexmo.py
+
+response_data = client.send_message(
+        {
+            "from": "valid-number",
+            "to": recipient,
+            "text": sms,
+        }
+    )
+```
+- initiate an SMS to the end user to start playing the game
+```
+./entry-point.sh vonage/phone_numbers.txt
+```
+
+The user receives the following message:
+```
+Hello. You can start your quiz with quizzie-bot by sending the following keywords:
+hi, hello or vonage.
+```
+
+- The DialogFlow agent takes over from here :-)
+
 
 ### what are we trying to do?
   -  Integrate to the Vonage 2-way SMS API:
@@ -62,25 +97,3 @@ The project structure looks like this:
     - at the end of the ten questions, a user gets a summary of their questions and answers and their final score
     
   That's it :-)
- 
-## How it works(web):
- - the `/webhooks/notify` url expects a number in the post request payload
-```
-e.g:
-{
-    "number": +187678490
-}
-```
- - after receiving the number, the webhook responds with the following question to the 
- end user: `Hello. You can start your quiz with quizzie-bot by sending the following keywords: hi, hello or vonage.`
-
-- the user responds to this using the provided key words which are now handled by the
-`/webhooks/update` url
-
-- dialogflow takes over from here
- 
- ## How it works, bash:
-- entry point takes an argument of txt file
-```
-./entry-point.sh vonage/phone_numbers.txt
-``` 
