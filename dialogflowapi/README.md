@@ -17,3 +17,8 @@
     
     - `export GOOGLE_APPLICATION_CREDENTIALS=my-key.json`
     - `python detect_intent_texts.py --project-id PROJECT-ID --session-id 12345678 "your-message-here"` 
+
+## importing the dialogflow agent
+- A zip file is attached under `dialogflowapi/resources/Quizzie.zip`
+- Navigate to Import/Export Menu under dialogflow console settings
+- import the agent as a zip file and you are set to go
