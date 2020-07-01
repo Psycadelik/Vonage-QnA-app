@@ -1,6 +1,5 @@
 import os
-import sys
-
+import subprocess
 
 from flask import Flask, request, jsonify
 from vonage.config import configs
@@ -65,15 +64,15 @@ def create_app(environment='development', test_config=None):
     @app.route("/webhooks/update/", methods=['POST'])
     def update_url():
         trigger = request.get_json().get('message')
-        project_id = os.getenv("PROJECT_ID")
-        session_id = os.getenv("SESSION_ID")
-        language_code = os.getenv("LANG_CODE")
 
-        response = detect_intent_texts(project_id, session_id, trigger, language_code)
-        number = open("phone_numbers.txt", 'r')
-        phone = number.readlines()[0]
+        args = "~/Downloads/updated-vonage-quizzie.json"
 
-        return send_sms(response, phone)
+        # file = os.path.dirname(os.path.abspath(__file__))
+        # number = open(file, 'r')
+        # phone = number.readlines()[0]
+        subprocess.check_call(
+            "./set_google_creds.sh {} {}".format(args, trigger),
+            shell=True)
 
     from . import db
     db.init_app(app)
