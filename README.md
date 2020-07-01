@@ -1,4 +1,5 @@
 # Vonage-QnA-app
+
 The project structure looks like this:
 ```
 .
@@ -13,6 +14,7 @@ The project structure looks like this:
 │   │       └── README.md
 │   ├── python_scripts
 │   │   └── create_conversation.py
+│   ├── conversation-rolldown.sh
 │   ├── README.md
 │   └── vonage.txt
 ├── dialogflowapi
@@ -22,6 +24,7 @@ The project structure looks like this:
 │   ├── README.md
 │   └── test_credentials.py
 ├── entry-point.sh
+├── .env
 ├── instance
 ├── nexmo.txt
 ├── Procfile
@@ -29,14 +32,6 @@ The project structure looks like this:
 ├── requirements.txt
 ├── runtime.txt
 ├── settings.py
-├── tests
-│   ├── __init__.py
-│   ├── test_answer_web_hook.py
-│   ├── test_create_users.py
-│   ├── test_event_web_hook.py
-│   ├── test_jwt_token_generation.py
-│   ├── test_notify_web_hook.py
-│   └── test_update_web_hook.py
 ├── two_way_sms_api
 │   ├── __init__.py
 │   ├── notify_customer.py
@@ -50,25 +45,49 @@ The project structure looks like this:
 │   ├── phone_numbers.txt
 └── wsgi.py
 ```
+## setup instructions:
+- clone the repository to your local folder:
+```
+git clone git@github.com:Psycadelik/Vonage-QnA-app.git QnA
+```
+- edit this file and add a valid phonenumber
+```
+nano QnA/vonage/phone_numbers.txt
+```
+- rent a valid number from vonage and edit the file:
+```
+- nano vonage/nexmo.py
+
+response_data = client.send_message(
+        {
+            "from": "valid-number",
+            "to": recipient,
+            "text": sms,
+        }
+    )
+```
+- initiate an SMS to the end user to start playing the game
+```
+./entry-point.sh vonage/phone_numbers.txt
+```
+
+The user receives the following message:
+```
+Hello. You can start your quiz with quizzie-bot by sending the following keywords:
+hi, hello or vonage.
+```
+
+- The DialogFlow agent takes over from here :-)
+
 
 ### what are we trying to do?
-  - Create a conversation :
-    - open your terminal
-    - type: `JWT=your-jwt-token`
-    - type: `CONV_NAME=your-conversation-name`
-    - type: `CONV_DISPLAY_NAME=your-conversation-display-name`
-    
-   background actions:
-    - chmod +x create_conversation.sh
-   
-   Run on your terminal: `./create_conversation.sh`
- 
   -  Integrate to the Vonage 2-way SMS API:
      - configure a virtual nexmo number
      - create a basic web app
      - send an sms notification
      - process the reply sms
   
+  Integrate to DialogFlow
   - The game logic
     - A user has to be under either Geographical, Historical or Entertainment chatroom
     - A user starts the game by texting play
@@ -78,25 +97,3 @@ The project structure looks like this:
     - at the end of the ten questions, a user gets a summary of their questions and answers and their final score
     
   That's it :-)
- 
-## How it works(web):
- - the `/webhooks/notify` url expects a number in the post request payload
-```
-e.g:
-{
-    "number": +187678490
-}
-```
- - after receiving the number, the webhook responds with the following question to the 
- end user: `Hello. You can start your quiz with quizzie-bot by sending the following keywords: hi, hello or vonage.`
-
-- the user responds to this using the provided key words which are now handled by the
-`/webhooks/update` url
-
-- dialogflow takes over from here
- 
- ## How it works, bash:
-- entry point takes an argument of txt file
-```
-./entry-point.sh vonage/phone_numbers.txt
-``` 
