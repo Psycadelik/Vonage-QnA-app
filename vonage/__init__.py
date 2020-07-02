@@ -73,20 +73,6 @@ def create_app(environment='development', test_config=None):
         phone = phone_number()
 
         return send_sms(response, phone)
-        # file =
-        # number = open(file, 'r')
-        # phone = number.readlines()[0]
-
-
-
-        # file = os.path.dirname(os.path.abspath(__file__))
-
-        # command = "cd ~/personal/QnA/dialogflowapi/"
-        # cmd = "set_google_creds.sh {}".format(trigger)
-        # process = subprocess.Popen(command, stdout=subprocess.PIPE)
-        # process2 = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
-        # output, error = process.communicate()
-        # output, error2 = process2.communicate()
 
     from . import db
     db.init_app(app)
