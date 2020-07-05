@@ -1,4 +1,6 @@
 # Vonage-QnA-app
+[![Actions Status](https://github.com/Psycadelik/Vonage-QnA-app/workflows/Quizzie/badge.svg)](https://github.com/Psycadelik{user}/Vonage-Qna-app/actions)
+
 
 The project structure looks like this:
 ```
@@ -79,21 +81,3 @@ hi, hello or vonage.
 
 - The DialogFlow agent takes over from here :-)
 
-
-### what are we trying to do?
-  -  Integrate to the Vonage 2-way SMS API:
-     - configure a virtual nexmo number
-     - create a basic web app
-     - send an sms notification
-     - process the reply sms
-  
-  Integrate to DialogFlow
-  - The game logic
-    - A user has to be under either Geographical, Historical or Entertainment chatroom
-    - A user starts the game by texting play
-    - They receive a reply with the first question
-    - They correct answer has to be a choice of either A, B, C or D
-    - For each correct answer, a user gets 2 points and for each wrong answer a user gets 0 points
-    - at the end of the ten questions, a user gets a summary of their questions and answers and their final score
-    
-  That's it :-)
