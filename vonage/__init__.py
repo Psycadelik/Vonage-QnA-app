@@ -1,10 +1,10 @@
 import os
-import sys
-
+import subprocess
 
 from flask import Flask, request, jsonify
 from vonage.config import configs
 from vonage.nexmo import nexmo_sms
+from vonage.fetch_phone_number import phone_number
 from dialogflowapi.intent_texts import detect_intent_texts
 from two_way_sms_api.send_sms import send_sms
 
@@ -51,7 +51,7 @@ def create_app(environment='development', test_config=None):
     """ The notify URL is the entry point to the QnA game. Users opt in by choosing either 1(geographical questions),
     2(Historical questions),3a(Music), 3b (Games), 3c (Movies)  or 4 (Exit)"""
 
-    @app.route("/webhooks/notify/", methods=['POST'])
+    @app.route("/notify/", methods=['POST'])
     def notify_url():
         number = request.get_json().get('number')
         notification = "Hello. You can start your quiz with quizzie-bot by sending the following keywords: hi," \
@@ -62,7 +62,7 @@ def create_app(environment='development', test_config=None):
     """ This url receives a message using the vonage 2-way sms API and processes it with a reply """
     """ This is where the game logic should reside """
 
-    @app.route("/webhooks/update/", methods=['POST'])
+    @app.route("/update/", methods=['POST'])
     def update_url():
         trigger = request.get_json().get('message')
         project_id = os.getenv("PROJECT_ID")
@@ -70,8 +70,7 @@ def create_app(environment='development', test_config=None):
         language_code = os.getenv("LANG_CODE")
 
         response = detect_intent_texts(project_id, session_id, trigger, language_code)
-        number = open("phone_numbers.txt", 'r')
-        phone = number.readlines()[0]
+        phone = phone_number()
 
         return send_sms(response, phone)
 

@@ -18,3 +18,5 @@ conversationapi/js_scripts/vonage_sdk_node/node_modules/
 conversationapi/js_scripts/vonage_sdk_node/.env
 dialogflowapi/google.txt
 vonage_tests
+dialogflowapi/push_intent_1.py
+dialogflowapi/set_google_creds_1.sh
