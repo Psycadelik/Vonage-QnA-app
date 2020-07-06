@@ -41,10 +41,12 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     Using the same `session_id` between requests allows continuation
     of the conversation."""
     import dialogflow_v2 as dialogflow
+    import google.auth
     from google.oauth2 import service_account
 
     key_file_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    credentials = service_account.Credentials.from_service_account_file(key_file_path)
+    # service_account.Credentials.from_service_account_file(key_file_path)
+    credentials, project = google.auth.default()
 
     #
     # client = dialogflow.IntentsClient({
