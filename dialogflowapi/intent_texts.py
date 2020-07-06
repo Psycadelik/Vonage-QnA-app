@@ -30,9 +30,9 @@ import uuid
 import os
 
 
-# import sys
-#
-# sys.path.append('../')
+import sys
+
+sys.path.append('../')
 
 
 # [START dialogflow_detect_intent_text]
