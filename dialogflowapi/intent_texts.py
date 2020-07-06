@@ -45,8 +45,8 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     from google.oauth2 import service_account
 
     key_file_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    # service_account.Credentials.from_service_account_file(key_file_path)
-    credentials, project = google.auth.default()
+    credentials = service_account.Credentials.from_service_account_file(key_file_path)
+    # credentials, project = google.auth.default()
 
     #
     # client = dialogflow.IntentsClient({
