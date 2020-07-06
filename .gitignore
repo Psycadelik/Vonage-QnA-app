@@ -12,6 +12,7 @@ bash_scripts/vonage.txt
 scripts/js_scripts/vonage_sdk_node/node_modules
 scripts/conversation_scripts/js_scripts/vonage_sdk_node/.env
 scripts/conversation_scripts/js_scripts/vonage_sdk_node/node_modules
+.env
 python3
 conversationapi/js_scripts/vonage_sdk_node/node_modules/
 conversationapi/js_scripts/vonage_sdk_node/.env
