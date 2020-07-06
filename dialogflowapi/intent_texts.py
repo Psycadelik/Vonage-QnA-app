@@ -27,6 +27,9 @@ Examples:
 
 import argparse
 import uuid
+import os
+
+
 # import sys
 #
 # sys.path.append('../')
@@ -38,6 +41,15 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     Using the same `session_id` between requests allows continuation
     of the conversation."""
     import dialogflow_v2 as dialogflow
+    from google.oauth2 import service_account
+
+    key_file_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    credentials = service_account.Credentials.from_service_account_file(key_file_path)
+
+    #
+    # client = dialogflow.IntentsClient({
+    #     keyFilename: key_file_path
+    # })
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
