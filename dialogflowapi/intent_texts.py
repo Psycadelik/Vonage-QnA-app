@@ -46,6 +46,9 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     key_file_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
     credentials = service_account.Credentials.from_service_account_file(
         '/home/frashamkare9/cloudshell_open/updated-vonage-quizzie.json')
+
+    scoped_credentials = credentials.with_scopes(
+        ['https://www.googleapis.com/auth/cloud-platform'])
     # credentials, project = google.auth.default()
 
     #
