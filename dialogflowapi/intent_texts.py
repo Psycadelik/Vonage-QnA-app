@@ -40,22 +40,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     Using the same `session_id` between requests allows continuation
     of the conversation."""
     import dialogflow_v2 as dialogflow
-    import google.auth
-    from google.oauth2 import service_account
 
-    print("current working directory  " + os.getcwd())
-    key_file_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    credentials = service_account.Credentials.from_service_account_file(
-        '/workspace/updated-vonage-quizzie.json')
-
-    scoped_credentials = credentials.with_scopes(
-        ['https://www.googleapis.com/auth/cloud-platform'])
-    # credentials, project = google.auth.default()
-
-    #
-    # client = dialogflow.IntentsClient({
-    #     keyFilename: key_file_path
-    # })
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
@@ -70,6 +55,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         response = session_client.detect_intent(
             session=session, query_input=query_input)
 
+        # print(response.query_result.fulfillment_text)
         return response.query_result.fulfillment_text
 
         # print('=' * 20)
