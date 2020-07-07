@@ -55,7 +55,6 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         response = session_client.detect_intent(
             session=session, query_input=query_input)
 
-        # print(response.query_result.fulfillment_text)
         return response.query_result.fulfillment_text
 
         # print('=' * 20)
